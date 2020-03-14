@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Covid Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+<div class="container">
+<h1>Coronavirus tracker</h1>
+<p>Total cases reported worldwide</p>
+
+<div class="jumbotron">
+    <h1 class="display-4" th:text = "${totalCases}"></h1>
+    <p class="lead">Total reported cases</p>
+    <hr class="my-4"/>
+    <h1 class="display-4" th:text = "${totalNewCases}"></h1>
+    <p class="lead">New reported cases for today</p>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th scope="col">State</th>
+        <th scope="col">Country</th>
+        <th scope="col">Latest cases reported</th>
+        <th scope="col">Changes since last day</th>
+    </tr>
+    <tr th:each="entry : ${entries}">
+        <td scope="raw" th:text="${entry.state}"></td>
+        <td scope="raw" th:text="${entry.country}"></td>
+        <td scope="raw" th:text="${entry.latestCases}">0</td>
+        <td scope="raw" th:text="${entry.deltaPreviousDate}">0</td>
+    </tr>
+</table>
+</div>
+</body>
+
+</html>

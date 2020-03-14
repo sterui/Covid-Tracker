@@ -45,7 +45,6 @@ public class CovidService {
             url = new URL(COVID_DATA_URL);
             connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod("GET");
-           // connection.setRequestProperty("User-Agent", "Mozilla/5.0");
             connection.setUseCaches (false);
 
             //Get Response
@@ -84,7 +83,6 @@ public class CovidService {
             entry.setCountry(record.get("Country/Region"));
             entry.setLatestCases(Integer.parseInt(record.get(record.size() - 1)));
             entry.setDeltaPreviousDate(Integer.parseInt(record.get(record.size() - 1)) - Integer.parseInt(record.get(record.size() - 2)));
-            System.out.println(entry);
             newEntries.add(entry);
         }
         total = newEntries.stream().mapToInt(count -> count.getLatestCases()).sum();
